@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace LutaRPG_CodigoEstruturado
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             int pvHeroi = 50; //Vida dos personagens
             int pvTroll = 30;
@@ -31,6 +32,7 @@ namespace LutaRPG_CodigoEstruturado
             Console.WriteLine("• Dano: " + danoMinimoEspadaEnferrujada + " a " + danoMaximoEspadaEnferrujada);
             Console.WriteLine("-------------------------------");//30 hífens
             Console.WriteLine();
+            await Task.Delay(2000);
 
             Console.WriteLine("Seu oponente é o: Troll");
             Console.WriteLine("Os pontos de vida de seu oponente é de: " + pvTroll + " PV");
@@ -42,10 +44,47 @@ namespace LutaRPG_CodigoEstruturado
             Console.WriteLine("• Dano: " + danoMinimoMachadoCorrompido + " a " + danoMaximoMachadoCorrompido);
             Console.WriteLine("-------------------------------");//30 hífens
             Console.WriteLine();
+            await Task.Delay(2000);
 
             Console.WriteLine("Você deseja lutar contra este oponente? (S / N)");
             char inicioLuta = char.Parse(Console.ReadLine());
 
+            if (inicioLuta == 'N')
+            {
+                Console.WriteLine("Você decidiu recuar.");
+                Console.WriteLine("Você perdeu!");
+                Console.WriteLine("Encerrando o jogo.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Você decidiu encarar seu oponente.");
+                Console.WriteLine("A luta começa em instantes");
+                await Task.Delay(2000);
+
+                while (pvHeroi > 0 || pvTroll > 0) //Luta
+                {
+                    pvTroll -= danoEspadaEnferrujada;
+                    if (danoEspadaEnferrujada > pvTroll)
+                    {
+                        pvTroll = 0;
+                        break;
+                    }
+                    pvHeroi -= danoMachadoCorrompido;
+                    if (danoMachadoCorrompido > pvHeroi)
+                    {
+                        pvHeroi = 0;
+                        break;
+                    }
+                    Console.WriteLine("Vida restante do Troll: " + pvTroll);
+                    Console.WriteLine("Vida restante do " + nomeHeroi + ": " + pvHeroi);
+                    await Task.Delay(2000);
+                }
+                Console.WriteLine();
+                Console.WriteLine("Vida final do Troll: " + pvTroll);
+                Console.WriteLine("Vida final do " + nomeHeroi + ": " + pvHeroi);
+            }
 
         }
     }
