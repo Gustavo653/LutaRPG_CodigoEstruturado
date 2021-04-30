@@ -12,10 +12,10 @@ namespace LutaRPG_CodigoEstruturado
 
             Random danoAleatorio = new Random(); //Classe que será usada para gerar o dano das armas
             
-            int danoMinimoEspadaEnferrujada = 7, danoMaximoEspadaEnferrujada = 23;
-            int danoEspadaEnferrujada = danoAleatorio.Next(danoMinimoEspadaEnferrujada, danoMaximoEspadaEnferrujada);
-            int danoMinimoMachadoCorrompido = 15, danoMaximoMachadoCorrompido = 40;
-            int danoMachadoCorrompido = danoAleatorio.Next(danoMinimoMachadoCorrompido, danoMaximoMachadoCorrompido);
+            int danoMinimoEspadaEnferrujada = 7, danoMaximoEspadaEnferrujada = 23; //Range do dano
+            int danoEspadaEnferrujada = danoAleatorio.Next(danoMinimoEspadaEnferrujada, danoMaximoEspadaEnferrujada); //Dano aleatório dentro do range
+            int danoMinimoMachadoCorrompido = 15, danoMaximoMachadoCorrompido = 40; //Range do dano
+            int danoMachadoCorrompido = danoAleatorio.Next(danoMinimoMachadoCorrompido, danoMaximoMachadoCorrompido); //Dano aleatório dentro do range
 
             Console.WriteLine("Bem vindo ao jogo Luta RPG");
             Console.WriteLine("-------------------------------");//30 hífens
@@ -61,20 +61,20 @@ namespace LutaRPG_CodigoEstruturado
             {
                 Console.WriteLine("Você decidiu encarar seu oponente.");
                 Console.WriteLine("A luta começa em instantes");
-                await Task.Delay(2000);
+                await Task.Delay(2000); //Tempo de espera entre cada informação
 
                 while (pvHeroi > 0 || pvTroll > 0) //Luta
                 {
-                    pvTroll -= danoEspadaEnferrujada;
-                    if (danoEspadaEnferrujada > pvTroll)
+                    pvTroll -= danoEspadaEnferrujada; //Dano no oponente
+                    if (danoEspadaEnferrujada > pvTroll) 
                     {
-                        pvTroll = 0;
+                        pvTroll = 0; //Mata o oponente
                         break;
                     }
-                    pvHeroi -= danoMachadoCorrompido;
+                    pvHeroi -= danoMachadoCorrompido; //Dano no oponente
                     if (danoMachadoCorrompido > pvHeroi)
                     {
-                        pvHeroi = 0;
+                        pvHeroi = 0; //Mata o oponente
                         break;
                     }
                     Console.WriteLine("Vida restante do Troll: " + pvTroll);
