@@ -6,6 +6,15 @@ namespace LutaRPG_CodigoEstruturado
     {
         static void Main(string[] args)
         {
+            int pvHeroi = 50;
+            Random danoAleatorio = new Random();
+            int valorMinimoHeroi = 7, valorMaximoHeroi = 23;
+            int danoHeroi = danoAleatorio.Next(valorMinimoHeroi, valorMaximoHeroi);
+
+            int pvTroll = 30;
+            int valorMinimoTroll = 15, valorMaximoTroll = 40;
+            int danoTroll = danoAleatorio.Next(valorMinimoTroll, valorMaximoTroll);
+
             Console.WriteLine("Bem vindo ao jogo Luta RPG");
             Console.WriteLine("-------------------------------");//30 hífens
             Console.WriteLine();
